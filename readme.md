@@ -140,7 +140,6 @@ def _calculateResult(self):
         self._view.buttons['C'].clicked.connect(self._view.clearDisplay)
 ```
 
-
 ## Step 7. Update main.py
 In the ```main.py``` file now import the Controller class from ```controller.py``` using the import statements and add import statements for controller before the import statements for model. After this connect the Controller with view by passing ```model``` and ```view``` to the ```Controller```.
 ### Statements added in main.py
@@ -150,3 +149,7 @@ from controller import Controller
 def main():
     Controller(model=model, view=view)
 ```
+
+## Conclusion
+Following the above steps GUI based Calculator can be created using python.
+

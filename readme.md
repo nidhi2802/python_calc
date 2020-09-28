@@ -112,3 +112,41 @@ from  model import evaluateExpression
 def main():
     model = evaluateExpression
 ```
+## Step 6. Create controller.py
+This file has function name ```_connectSignals(self)``` which is used to capture all the events by calling different functions like ```_calculateResult(self)``` and ```_buildExpression(self, sub_exp)```. ```_buildExpression(self, sub_exp)``` creates expression by appending the characters and display it in the display box.
+### Code for  _connectSignals(), _calculateResult() and _buildExpression()
+```python
+def _calculateResult(self):
+        """Evaluate expressions."""
+        result = self._evaluate(expression=self._view.getDisplayText())
+        self._view.setDisplayText(result)
+
+    def _buildExpression(self, sub_exp):
+        """Build expression."""
+        if self._view.getDisplayText() == ERROR_MSG:
+            self._view.clearDisplay()
+
+        expression = self._view.getDisplayText() + sub_exp
+        self._view.setDisplayText(expression)
+
+    def _connectSignals(self):
+        """Connect signals and slots."""
+        for btnText, btn in self._view.buttons.items():
+            if btnText not in {'=', 'C'}:
+                btn.clicked.connect(partial(self._buildExpression, btnText))
+
+        self._view.buttons['='].clicked.connect(self._calculateResult)
+        self._view.display.returnPressed.connect(self._calculateResult)
+        self._view.buttons['C'].clicked.connect(self._view.clearDisplay)
+```
+
+
+## Step 7. Update main.py
+In the ```main.py``` file now import the Controller class from ```controller.py``` using the import statements and add import statements for controller before the import statements for model. After this connect the Controller with view by passing ```model``` and ```view``` to the ```Controller```.
+### Statements added in main.py
+```python
+from controller import Controller
+
+def main():
+    Controller(model=model, view=view)
+```

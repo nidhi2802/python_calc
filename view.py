@@ -6,7 +6,6 @@ from PyQt5.QtWidgets import QGridLayout
 from PyQt5.QtWidgets import QLineEdit
 from PyQt5.QtWidgets import QPushButton
 from PyQt5.QtWidgets import QVBoxLayout
-
 class GUI(QMainWindow):
     """PyCalc's View (GUI)."""
     def __init__(self):
@@ -17,9 +16,13 @@ class GUI(QMainWindow):
         self.setWindowTitle('Calculator')
         self.setFixedSize(235, 235)
 
-       # Set the central widget
+        # Set the central widget and the general layout
+        self.generalLayout = QVBoxLayout()
+
+        # Set the central widget
         self._centralWidget = QWidget(self)
         self.setCentralWidget(self._centralWidget)
+
         self._centralWidget.setLayout(self.generalLayout)
 
         # Create the display and the buttons
@@ -27,7 +30,7 @@ class GUI(QMainWindow):
         self._createButtons()
 
 
-def _createDisplayLED(self):
+    def _createDisplayLED(self):
         """Create the display."""
         
         # Create the display widget
@@ -40,8 +43,7 @@ def _createDisplayLED(self):
         # Add the display to the general layout
         self.generalLayout.addWidget(self.display)
 
-
-def _createButtons(self):
+    def _createButtons(self):
         """Create the buttons."""
         self.buttons = {}
         buttonsLayout = QGridLayout()
@@ -67,7 +69,8 @@ def _createButtons(self):
                    '+': (3, 3),
                    '=': (3, 4),
                   }
-# Create the buttons and add them to the grid layout
+
+        # Create the buttons and add them to the grid layout
         for btnText, pos in buttons.items():
             self.buttons[btnText] = QPushButton(btnText)
             self.buttons[btnText].setFixedSize(40, 40)
@@ -75,17 +78,16 @@ def _createButtons(self):
         # Add buttonsLayout to the general layout
         self.generalLayout.addLayout(buttonsLayout)
 
-
-def setDisplayText(self, text):
+    def setDisplayText(self, text):
         """Set display's text."""
         self.display.setText(text)
         self.display.setFocus()
 
-
-def getDisplayText(self):
+    def getDisplayText(self):
         """Get display's text."""
         return self.display.text()
 
-def clearDisplay(self):
+    def clearDisplay(self):
         """Clear the display."""
         self.setDisplayText('')
+

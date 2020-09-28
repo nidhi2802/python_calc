@@ -1,2 +1,3 @@
+Simple GUI based Calculator in Python
 Step1: Create test.py
-This file is for the purpose of testing whether PyQt5 is installed in machine and try simple basic functionality of PyQt5.
+This file is for the purpose of testing whether PyQt5 toolkit is installed in machine or not. Once ceated execute the test.py file by writing command 'python test.py'. Running this file should not give any errors which means PyQt is working well but if you get error like PyQt ModuleNotFound error then simple install PyQt using thye command 'pip install PyQt5'. This might take few minutes to install and once PyQt5 is installed again execute the file and you will see a small Calculator window opened with a message 'This is a test'.

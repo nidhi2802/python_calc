@@ -19,15 +19,15 @@ Execute the test.py using:
 ```bash
 python test.py
 ```
-If while executing the file you get the error of ModuleNotFound suggests that PyQt5 is not installed. Install PyQt5 using the following command:
+If while executing the file you get the error of ```ModuleNotFound``` suggests that PyQt5 is not installed. Install PyQt5 using the following command:
 
 ```bash
 pip install PyQt5
 ```
-Once installed execute the file and a small window will appear with message 'This is Test'.
+Once installed execute the file and a small window will appear with message ```'This is Test'```.
 
 ## Step 2. Create view.py
-The view.py here creates an application window for the user with the specific layout, title and size. The file contains two main functions _createDisplayLED() and _createButtons(). The _createDisplayLED() is for the display we see in the calculator and _createButtons() for the different buttons in the calculator.
+The view.py here creates an application window for the user with the specific layout, title and size. The file contains two main functions ```_createDisplayLED()``` and ```_createButtons()```. The ```_createDisplayLED()``` is for the display we see in the calculator and ```_createButtons()``` for the different buttons in the calculator.
 
 ### Code Sample for _createDisplayLED() and _createButtons()  
 ```python
@@ -80,11 +80,35 @@ def _createDisplayLED(self):
         self.generalLayout.addLayout(buttonsLayout)
 ````
 ## Step 3. Create main.py
-The main.py file is created to test the view.py layout. In the main.py import the GUI class from the view.
+The ```main.py``` file is created to test the ```view.py``` layout. In the ```main.py``` import the GUI class from the view.
 ```python
 #Import statements of main.py
 import sys
 
 from PyQt5.QtWidgets import QApplication
 from view import GUI
+```
+## Step 4. Create model.py
+ This file has only one function ```evaluateExpression(expression)``` which will be used to evaluate the expression given by the user and return the result and if any error occurs the functions returns the error message.
+```python
+ERROR_MSG = 'ERROR'
+# Create a Model to handle the calculator's operation
+def evaluateExpression(expression):
+    """Evaluate an expression."""
+    try:
+        result = str(eval(expression, {}, {})) 
+    except Exception:
+        result = ERROR_MSG
+
+    return result
+```
+
+## Step 5. Update main.py
+The ```evaluateExpression(expression)``` from ```model.py``` will be imported in the file using the import statement and will be called in the ```main.py``` to evaluate the input from the user.
+### Added statements in main.py
+```python
+from  model import evaluateExpression
+
+def main():
+    model = evaluateExpression
 ```
